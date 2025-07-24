@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fate of Alagaësia</title>
+  <link rel="icon" href="pictures/icon.png">
+
+  <style>
+    body {
+      background-image: url('pictures/background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+      font-family: 'Georgia', serif;
+      color: #fff;
+    }
+
+    .firefly {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(ellipse at center, #ffffcc 0%, #ffff00 60%, transparent 100%);
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      max-width: 800px;
+      margin: 100px auto;
+      border-radius: 10px;
+    }
+
+    h1 {
+      color: #fefefe;
+      text-shadow: 0 0 6px #fff, 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    input, button {
+      font-size: 1em;
+      padding: 12px 16px;
+      margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    input {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    input:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 6px #00ffff;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    button {
+      background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
+      color: #fff;
+      border: 1px solid #444;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(145deg, #2c2c2c, #1e1e1e);
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+
+    #result {
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      .container {
+        margin: 30px 10px;
+        padding: 15px;
+      }
+
+      input, button {
+        font-size: 0.95em;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 1.3em;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Somewhere in Du Weldenvarden...</h1>
+  <p>Enter your name, Shur'tugal:</p>
+  <input type="text" id="name" placeholder="Enter your name">
+  <button onclick="forgeDestiny()">Forge Destiny</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  const NUM_FIREFLIES = 50;
+
+  for (let i = 0; i < NUM_FIREFLIES; i++) {
+    let firefly = document.createElement('div');
+    firefly.classList.add('firefly');
+    firefly.style.top = Math.random() * 100 + 'vh';
+    firefly.style.left = Math.random() * 100 + 'vw';
+    let moveX = (Math.random() - 0.5) * 200;
+    let moveY = (Math.random() - 0.5) * 200;
+    let duration = 10 + Math.random() * 10;
+
+    firefly.animate([
+      { transform: `translate(0, 0)` },
+      { transform: `translate(${moveX}px, ${moveY}px)` }
+    ], {
+      duration: duration * 1000,
+      iterations: Infinity,
+      direction: 'alternate',
+      easing: 'ease-in-out'
+    });
+
+    document.body.appendChild(firefly);
+  }
+
+  function getRandomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+  }
+
+  function getDragonGender() {
+    return Math.random() < 0.5 ? 'male' : 'female';
+  }
+
+  function getEggSize() {
+    return parseFloat((Math.random() * (150 - 30) + 30).toFixed(2));
+  }
+
+  function forgeDestiny() {
+    const name = document.getElementById('name').value.trim();
+    if (!name) {
+      alert("Please enter your name!");
+      return;
+    }
+
+    const multicolor = Math.random() < 0.2;
+    const color1 = getRandomColor();
+    const color2 = multicolor ? getRandomColor() : null;
+    const formattedColor = multicolor ? `${color1} and ${color2}` : color1;
+    const gender = getDragonGender();
+    const size = getEggSize();
+
+    const story = `
+<p>The sun dipped behind the peaks of the mountains, painting the sky in gold and purple. The elven treetops whispered in the soft wind, their leaves filtering the last rays of light. You stood there among the chosen — a line of warriors from once-divided races, now united by the same oath. Humans with determined expressions, elves with noble posture, dwarves forged in the deepest forges of Tronjheim, and even urgals, whose presence, once unthinkable, was now accepted. All had trained, fought, and waited for this moment.<br>
+The ceremony had begun.<br>
+With each heartbeat, the air grew heavier with history. One by one, the aspirants stepped forward. Some walked with confidence, others hesitated, but all extended their hands toward the egg, around ${size} cm in size, resting on the black stone pedestal, colored ${formattedColor}. None moved. None responded. Only silence. And then... murmurs among the waiting crowd.<br>
+Night fell. The first stars twinkled through the branches, and the full moon rose, spilling its silver light onto the glade. The elves raised their voices, singing in the Ancient Language. The words floated through the air, almost tangible, as if the world itself held its breath.<br>
+And then... it was your turn.<br>
+Your feet moved as if guided by fate. Everything else faded — only you, the egg, and destiny remained. Under hundreds of watchful eyes, you stepped forward. The egg — your egg — was not still like the others. It pulsed, a faint light seeping through its seams.<br>
+A crack.<br>
+A fissure crawled across the shell, then another. Gently, the creature within broke free. Its scales, still wet, shimmered under the moonlight. The young ${gender} dragon raised its head, its eyes — deep and vivid, filled with ancient wisdom — meeting yours.<br>
+You touched its forehead, and everything changed. A warmth surged through your veins, a strange and familiar consciousness flooding your mind. The bond was forged in an instant — unbreakable, stronger than any vow. A name echoed in your thoughts: ${name}. And you knew: this creature was now part of you, and you of it.<br>
+And so, beneath the moon and stars, while elven songs echoed above, the fate of Alagaësia shifted once again.<br>
+<strong><em>Atra esterní ono thelduin, Mor'ranr lífa unin hjarta onr, un du evarínya ono varda!</em></strong>
+</p>
+`;
+
+    document.getElementById("result").innerHTML = story;
+  }
+</script>
+
+<footer style="text-align: center; margin-top: 285px; font-size: 0.9em; color: #ccc;">
+  <p style="margin: 0;">
+    This is a non-commercial fan project inspired by the world of <em>Eragon</em> by Christopher Paolini.
+  </p>
+  <p style="margin: 0; text-indent: -2.6em; padding-left: 2.3em;margin-bottom: 40px;">
+    All rights to the Inheritance Cycle universe belong to him and his publishers.
+  </p>
+</footer>
+
+
+
+</body>
+</html>
