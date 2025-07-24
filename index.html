@@ -89,14 +89,31 @@
       background: linear-gradient(145deg, #2c2c2c, #1e1e1e);
       transform: scale(1.03);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-      cursor: pointer;
+    }
+
+    #eggVisual {
+      width: 100px;
+      height: 140px;
+      margin: 30px auto 10px auto;
+      border-radius: 50% 50% 45% 45%;
+      background: gray;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2),
+                  0 0 50px rgba(255, 255, 255, 0.1);
+      transition: all 0.6s ease;
+      display: none;
+      animation: pulseEgg 4s infinite ease-in-out;
+    }
+
+    @keyframes pulseEgg {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
+      50% { transform: scale(1.03); box-shadow: 0 0 40px rgba(255, 255, 255, 0.4); }
     }
 
     #result {
       white-space: pre-wrap;
       margin-top: 20px;
     }
-    
+
     @media (max-width: 600px) {
       .container {
         margin: 30px 10px;
@@ -112,6 +129,11 @@
         font-size: 1.3em;
         text-align: center;
       }
+
+      #eggVisual {
+        width: 90px;
+        height: 120px;
+      }
     }
   </style>
 </head>
@@ -123,6 +145,10 @@
   <p>Enter your name, Shur'tugal:</p>
   <input type="text" id="name" placeholder="Enter your name">
   <button onclick="forgeDestiny()">Forge Destiny</button>
+
+  <!-- Ovo visual -->
+  <div id="eggVisual"></div>
+
   <div id="result"></div>
 </div>
 
@@ -177,6 +203,13 @@
     const gender = getDragonGender();
     const size = getEggSize();
 
+    // Visualização do ovo
+    const egg = document.getElementById("eggVisual");
+    egg.style.display = "block";
+    egg.style.background = multicolor
+      ? `linear-gradient(135deg, ${color1}, ${color2})`
+      : color1;
+
     const story = `
 <p>The sun dipped behind the peaks of the mountains, painting the sky in gold and purple. The elven treetops whispered in the soft wind, their leaves filtering the last rays of light. You stood there among the chosen — a line of warriors from once-divided races, now united by the same oath. Humans with determined expressions, elves with noble posture, dwarves forged in the deepest forges of Tronjheim, and even urgals, whose presence, once unthinkable, was now accepted. All had trained, fought, and waited for this moment.<br>
 The ceremony had begun.<br>
@@ -204,8 +237,6 @@ And so, beneath the moon and stars, while elven songs echoed above, the fate of 
     All rights to the Inheritance Cycle universe belong to him and his publishers.
   </p>
 </footer>
-
-
 
 </body>
 </html>
