@@ -118,6 +118,15 @@
       font-size: 1.05em;
     }
 
+    footer {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      text-align: center;
+      font-size: 0.7em;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 20px;
+    }
+
     @media (max-width: 600px) {
       .container {
         margin: 30px 10px;
@@ -155,9 +164,18 @@
   <button onclick="forgeDestiny()">Forge Destiny</button>
 
   <div id="eggVisual"></div>
-
   <div id="result"></div>
 </div>
+
+<footer id="footer">
+  <p style="margin: 0;">
+    This is a non-commercial fan project inspired by the world of <em>Eragon</em> by Christopher Paolini.
+  </p>
+  <p style="margin: 0; text-indent: -2.6em; padding-left: 2.3em; margin-bottom: 10px;">
+    All rights to the Inheritance Cycle universe belong to him and his publishers.<br>
+    This project is not affiliated with Christopher Paolini or any official license holder.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </p>
+</footer>
 
 <script>
   const NUM_FIREFLIES = 50;
@@ -237,16 +255,19 @@ And so, beneath the moon and stars, while elven songs echoed above, the fate of 
 
     document.getElementById("result").innerHTML = story;
   }
-</script>
+  
+  window.addEventListener('scroll', function () {
+    const footer = document.getElementById('footer');
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = window.scrollY;
 
-<footer style="text-align: center; margin-top: 287px; font-size: 0.9em; color: #ccc;">
-  <p style="margin: 0;">
-    This is a non-commercial fan project inspired by the world of <em>Eragon</em> by Christopher Paolini.
-  </p>
-  <p style="margin: 0; text-indent: -2.6em; padding-left: 2.3em; margin-bottom: 10px;">
-    All rights to the Inheritance Cycle universe belong to him and his publishers.<br>
-    This project is not affiliated with Christopher Paolini or any official license holder.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</footer>
+    if (scrolled >= scrollable - 5) {
+      footer.style.opacity = '1';
+    } else {
+      footer.style.opacity = '0';
+    }
+  });
+</script>
 
 </body>
 </html>
