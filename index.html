@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fate of Alagaësia</title>
   <link rel="icon" href="pictures/icon.png">
-
   <style>
     body {
       background-image: url('pictures/background.png');
@@ -114,6 +113,11 @@
       margin-top: 20px;
     }
 
+    #result p {
+      line-height: 1.6;
+      font-size: 1.05em;
+    }
+
     @media (max-width: 600px) {
       .container {
         margin: 30px 10px;
@@ -134,6 +138,10 @@
         width: 90px;
         height: 120px;
       }
+
+      #result p {
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
@@ -143,10 +151,9 @@
 <div class="container">
   <h1>Somewhere in Du Weldenvarden...</h1>
   <p>Enter your name, Shur'tugal:</p>
-  <input type="text" id="name" placeholder="Enter your name">
+  <input type="text" id="name" placeholder="Enter your name" aria-label="Name input">
   <button onclick="forgeDestiny()">Forge Destiny</button>
 
-  <!-- Ovo visual -->
   <div id="eggVisual"></div>
 
   <div id="result"></div>
@@ -190,20 +197,22 @@
   }
 
   function forgeDestiny() {
-    const name = document.getElementById('name').value.trim();
-    if (!name) {
+    const nameInput = document.getElementById('name').value.trim();
+    if (!nameInput) {
       alert("Please enter your name!");
       return;
     }
 
+    const name = nameInput; // Nome agora é usado exatamente como digitado
     const multicolor = Math.random() < 0.2;
     const color1 = getRandomColor();
     const color2 = multicolor ? getRandomColor() : null;
-    const formattedColor = multicolor ? `${color1} and ${color2}` : color1;
+    const formattedColor = multicolor
+      ? `a swirl of ${color1} and ${color2}`
+      : color1;
     const gender = getDragonGender();
     const size = getEggSize();
 
-    // Visualização do ovo
     const egg = document.getElementById("eggVisual");
     egg.style.display = "block";
     egg.style.background = multicolor
@@ -213,13 +222,14 @@
     const story = `
 <p>The sun dipped behind the peaks of the mountains, painting the sky in gold and purple. The elven treetops whispered in the soft wind, their leaves filtering the last rays of light. You stood there among the chosen — a line of warriors from once-divided races, now united by the same oath. Humans with determined expressions, elves with noble posture, dwarves forged in the deepest forges of Tronjheim, and even urgals, whose presence, once unthinkable, was now accepted. All had trained, fought, and waited for this moment.<br>
 The ceremony had begun.<br>
-With each heartbeat, the air grew heavier with history. One by one, the aspirants stepped forward. Some walked with confidence, others hesitated, but all extended their hands toward the egg, around ${size} cm in size, resting on the black stone pedestal, colored ${formattedColor}. None moved. None responded. Only silence. And then... murmurs among the waiting crowd.<br>
+With each heartbeat, the air grew heavier with history. One by one, the aspirants stepped forward. Some walked with confidence, others hesitated, but all extended their hands toward the egg, measuring around ${size} cm, resting upon a black stone pedestal, its surface glimmering with ${formattedColor}. None moved. None responded. Only silence. And then... murmurs among the waiting crowd.<br>
 Night fell. The first stars twinkled through the branches, and the full moon rose, spilling its silver light onto the glade. The elves raised their voices, singing in the Ancient Language. The words floated through the air, almost tangible, as if the world itself held its breath.<br>
 And then... it was your turn.<br>
-Your feet moved as if guided by fate. Everything else faded — only you, the egg, and destiny remained. Under hundreds of watchful eyes, you stepped forward. The egg — your egg — was not still like the others. It pulsed, a faint light seeping through its seams.<br>
+Your feet moved as if guided by fate. Everything else faded — only you, the egg, and destiny remained. Under hundreds of watchful eyes, you stepped forward. The egg — your egg — was unlike the others — it stirred. It pulsed, faint light seeping through its seams.<br>
 A crack.<br>
-A fissure crawled across the shell, then another. Gently, the creature within broke free. Its scales, still wet, shimmered under the moonlight. The young ${gender} dragon raised its head, its eyes — deep and vivid, filled with ancient wisdom — meeting yours.<br>
-You touched its forehead, and everything changed. A warmth surged through your veins, a strange and familiar consciousness flooding your mind. The bond was forged in an instant — unbreakable, stronger than any vow. A name echoed in your thoughts: ${name}. And you knew: this creature was now part of you, and you of it.<br>
+A fissure crawled across the shell, then another. Gently, the creature within broke free. Its damp scales shimmered under the moonlight like polished gemstones. The young ${gender} dragon raised its head, its eyes — deep and vivid, filled with ancient wisdom — meeting yours.<br>
+You reached out, and the moment your fingers brushed the dragon’s forehead, a searing pain exploded in your palm. You gasped — a spiral of silver fire carved itself into your skin, glowing with an otherworldly light. It burned not with heat, but with power — ancient, wild, and binding. Veins of light danced up your arm as a consciousness, vast and ageless, poured into your mind. Time unraveled. The world narrowed to this connection, this pact. This bond.<br>
+A name echoed in your thoughts: ${name}. And you knew: this creature was now part of you, and you of it.<br>
 And so, beneath the moon and stars, while elven songs echoed above, the fate of Alagaësia shifted once again.<br>
 <strong><em>Atra esterní ono thelduin, Mor'ranr lífa unin hjarta onr, un du evarínya ono varda!</em></strong>
 </p>
@@ -233,9 +243,9 @@ And so, beneath the moon and stars, while elven songs echoed above, the fate of 
   <p style="margin: 0;">
     This is a non-commercial fan project inspired by the world of <em>Eragon</em> by Christopher Paolini.
   </p>
-  <p style="margin: 0; text-indent: -2.6em; padding-left: 2.3em;margin-bottom: 40px;">
-    All rights to the Inheritance Cycle universe belong to him and his publishers.
-  </p>
+  <p style="margin: 0; text-indent: -2.6em; padding-left: 2.3em; margin-bottom: 10px;">
+    All rights to the Inheritance Cycle universe belong to him and his publishers.<br>
+    This project is not affiliated with Christopher Paolini or any official license holder.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </footer>
 
 </body>
