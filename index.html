@@ -76,19 +76,20 @@
     }
 
     button {
-      background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
-      color: #fff;
-      border: 1px solid #444;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
-    }
+    background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
+    color: #fff;
+    border: 1px solid #444;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+  }
 
     button:hover {
-      background: linear-gradient(145deg, #2c2c2c, #1e1e1e);
-      transform: scale(1.03);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    }
+    background: linear-gradient(145deg, #2c2c2c, #1e1e1e);
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 0 8px #fff, 0 0 14px rgba(255, 255, 255, 0.5);
+    border-color: #fff;
+  }
 
     #eggVisual {
       width: 100px;
@@ -161,7 +162,7 @@
   <h1>Somewhere in Du Weldenvarden...</h1>
   <p>Enter your name, Shur'tugal:</p>
   <input type="text" id="name" placeholder="Enter your name" aria-label="Name input">
-  <button onclick="forgeDestiny()">Forge Destiny</button>
+  <button onclick="forgeDestiny()">Begin the Journey</button>
 
   <div id="eggVisual"></div>
   <div id="result"></div>
