@@ -6,6 +6,7 @@
   <title>Fate of Alagaësia</title>
   <link rel="icon" href="pictures/icon.png">
   <style>
+    /* General page setup and background */
     body {
       background-image: url('pictures/background.png');
       background-size: cover;
@@ -19,6 +20,7 @@
       color: #fff;
     }
 
+    /* Glowing firefly particles */
     .firefly {
       position: fixed;
       width: 4px;
@@ -30,11 +32,13 @@
       pointer-events: none;
     }
 
+    /* Firefly blinking animation */
     @keyframes blink {
       0%, 100% { opacity: 0.2; transform: scale(1); }
       50% { opacity: 1; transform: scale(1.5); }
     }
 
+    /* Central container with glass effect */
     .container {
       position: relative;
       z-index: 1;
@@ -76,37 +80,32 @@
     }
 
     button {
-    background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
-    color: #fff;
-    border: 1px solid #444;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease;
-  }
+      background: linear-gradient(145deg, #1e1e1e, #2c2c2c);
+      color: #fff;
+      border: 1px solid #444;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
 
     button:hover {
-    background: linear-gradient(145deg, #2c2c2c, #1e1e1e);
-    transform: scale(1.03);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 0 8px #fff, 0 0 14px rgba(255, 255, 255, 0.5);
-    border-color: #fff;
-  }
+      background: linear-gradient(145deg, #2c2c2c, #1e1e1e);
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 0 8px #fff, 0 0 14px rgba(255, 255, 255, 0.5);
+      border-color: #fff;
+    }
 
+    /* Hidden egg SVG until triggered */
     #eggVisual {
-      width: 100px;
-      height: 140px;
+      width: 200px;
+      height: auto;
       margin: 30px auto 10px auto;
-      border-radius: 50% 50% 45% 45%;
-      background: gray;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2),
-                  0 0 50px rgba(255, 255, 255, 0.1);
-      transition: all 0.6s ease;
       display: none;
-      animation: pulseEgg 4s infinite ease-in-out;
+      transition: all 0.6s ease;
     }
 
     @keyframes pulseEgg {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
-      50% { transform: scale(1.03); box-shadow: 0 0 40px rgba(255, 255, 255, 0.4); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
     }
 
     #result {
@@ -128,68 +127,184 @@
       padding: 20px;
     }
 
+    /* Responsive adjustments */
     @media (max-width: 600px) {
       .container {
         margin: 30px 10px;
         padding: 15px;
       }
-
       input, button {
         font-size: 0.95em;
         padding: 10px;
       }
-
       h1 {
         font-size: 1.3em;
         text-align: center;
       }
-
-      #eggVisual {
-        width: 90px;
-        height: 120px;
-      }
-
       #result p {
         font-size: 0.95em;
       }
     }
+
+    @keyframes pulseDragon {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
   </style>
 </head>
-
 <body>
+  <!-- Main content container -->
+  <div class="container">
+    <h1>Somewhere in Du Weldenvarden...</h1>
+    <p>Enter your name, Shur'tugal:</p>
+    <input type="text" id="name" placeholder="Enter your name">
+    <button onclick="forgeDestiny()">Begin the Journey</button>
 
-<div class="container">
-  <h1>Somewhere in Du Weldenvarden...</h1>
-  <p>Enter your name, Shur'tugal:</p>
-  <input type="text" id="name" placeholder="Enter your name" aria-label="Name input">
-  <button onclick="forgeDestiny()">Begin the Journey</button>
+     <!-- Egg -->
+    <div id="eggVisual">
+    <svg id="eggSVG" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="eggGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop id="stop1" offset="0%" stop-color="#999999" />
+          <stop id="stop2" offset="100%" stop-color="#999999" />
+        </linearGradient>
+      </defs>
+      <g id="eggColorGroup" transform="translate(0,1024) scale(0.1,-0.1)" fill="url(#eggGradient)" stroke="none">
+        <path d="M4905 8926 c-371 -72 -769 -370 -1155 -866 -566 -728 -1082 -1832
+        -1303 -2790 -115 -496 -164 -918 -154 -1325 11 -442 94 -795 277 -1170 125
+        -257 282 -477 485 -680 365 -365 838 -619 1375 -739 257 -57 383 -70 690 -70
+        305 -1 416 10 647 59 673 145 1265 513 1659 1030 339 445 524 1018 524 1620 0
+        331 -53 754 -146 1170 -167 744 -517 1613 -917 2280 -493 822 -1021 1327
+        -1532 1465 -102 28 -344 36 -450 16z"/>
+      </g>
+    </svg>
+  </div>
 
-  <div id="eggVisual"></div>
-  <div id="result"></div>
-</div>
+    <!-- Narrative -->
+    <div id="result"></div>
 
-<footer id="footer">
-  <p style="margin: 0;">
-    This is a non-commercial fan project inspired by the world of <em>Eragon</em> by Christopher Paolini.
-  </p>
-  <p style="margin: 0; text-indent: -2.6em; padding-left: 2.3em; margin-bottom: 10px;">
-    All rights to the Inheritance Cycle universe belong to him and his publishers.<br>
-    This project is not affiliated with Christopher Paolini or any official license holder.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </p>
-</footer>
+    <!-- Baby Dragon -->
+    <div id="dragonVisual" style="display: none; margin-top: 30px;">
+    <svg id="dragonSVG" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
+       style="width: 300px; height: auto; display: block; margin: 0 auto;" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="dragonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop id="dragonStop1" offset="0%" stop-color="#999999" />
+         <stop id="dragonStop2" offset="100%" stop-color="#999999" />
+        </linearGradient>
+      </defs>
+      <g transform="translate(0.000000,1024.000000) scale(0.1,-0.1)"
+       fill="url(#dragonGradient)" stroke="none">
+        <path d="M3433 8979 c-29 -29 -13 -47 96 -108 224 -125 351 -254 446 -453 119
+-250 121 -513 4 -713 -21 -37 -36 -71 -33 -76 2 -5 49 -44 102 -86 130 -104
+450 -424 548 -548 185 -233 331 -463 365 -576 24 -78 23 -104 -11 -259 -36
+-168 -21 -356 42 -520 76 -198 207 -338 468 -498 34 -21 34 -22 9 -22 -34 0
+-176 70 -254 125 -169 120 -297 319 -346 540 -22 100 -17 313 10 424 28 113
+25 173 -14 255 -154 326 -683 847 -1230 1213 -380 253 -848 483 -1265 620
+-375 123 -806 193 -1113 181 -125 -5 -179 -19 -206 -52 -24 -29 -2 -47 108
+-88 140 -51 230 -96 337 -166 280 -184 453 -418 527 -712 31 -124 30 -330 -2
+-455 -40 -152 -100 -279 -218 -454 -69 -103 -59 -120 82 -136 269 -30 509
+-161 635 -345 62 -91 121 -218 147 -319 22 -83 26 -117 26 -246 -1 -140 -3
+-159 -37 -289 -20 -77 -36 -150 -36 -163 0 -31 32 -31 120 1 155 56 297 69
+467 41 216 -35 419 -125 546 -243 49 -46 137 -156 137 -173 0 -4 -16 -1 -35 7
+-68 28 -137 13 -292 -64 -132 -65 -213 -127 -213 -162 0 -17 38 -40 65 -40 30
+0 13 -21 -46 -57 -99 -61 -251 -176 -287 -217 -38 -44 -33 -60 23 -70 19 -4
+35 -12 35 -17 0 -6 -87 -100 -192 -210 -106 -110 -193 -207 -193 -217 0 -11
+12 -21 33 -27 17 -5 32 -14 32 -20 0 -5 -48 -53 -107 -105 -165 -145 -213
+-195 -213 -218 0 -12 5 -22 12 -22 57 0 -205 -111 -309 -131 -198 -38 -380 37
+-461 189 -46 87 -65 177 -64 312 1 305 153 597 469 905 68 66 123 128 123 137
+0 25 -43 33 -106 19 -298 -67 -670 -396 -849 -752 -53 -105 -83 -187 -113
+-314 -23 -98 -26 -131 -26 -300 -1 -203 10 -282 59 -425 119 -349 405 -627
+773 -750 187 -62 274 -75 527 -74 208 0 242 3 358 27 159 32 267 65 426 129
+240 95 277 116 310 167 29 47 151 266 236 424 26 49 49 86 51 84 7 -7 -55
+-146 -192 -427 -131 -271 -158 -348 -148 -417 12 -85 103 -155 234 -182 56
+-11 306 -47 575 -81 294 -38 417 -74 553 -162 77 -50 85 -44 78 52 -6 86 -35
+161 -87 224 -23 28 -50 60 -58 70 -31 38 82 -50 121 -93 51 -59 88 -83 190
+-124 47 -19 106 -49 131 -66 55 -38 63 -38 71 -5 10 39 -12 131 -48 199 -51
+97 -123 158 -238 201 -59 22 -61 23 -27 23 52 1 130 -25 176 -58 22 -16 61
+-56 87 -89 41 -54 51 -61 96 -71 60 -13 138 -51 164 -80 11 -12 26 -21 34 -21
+22 0 10 128 -19 205 -40 108 -187 235 -320 276 -71 22 -151 24 -340 7 -115
+-10 -161 -9 -310 5 -96 10 -184 20 -197 23 -21 6 -14 16 82 105 286 270 485
+567 541 809 31 137 18 305 -32 405 -105 208 -364 327 -678 311 -66 -3 -157
+-15 -203 -26 -95 -23 -100 -23 -86 -11 16 16 165 58 268 76 254 46 494 -22
+657 -184 199 -198 227 -467 80 -776 -78 -163 -175 -293 -376 -504 -64 -67
+-115 -127 -112 -134 6 -21 93 -19 176 3 43 12 140 53 216 91 136 68 398 222
+451 264 27 22 28 22 11 57 -24 50 -47 155 -47 213 0 96 35 225 118 435 74 190
+80 164 15 -69 -74 -266 -87 -372 -57 -471 22 -74 61 -133 227 -338 353 -438
+446 -569 476 -669 45 -150 102 -197 293 -239 139 -31 216 -66 290 -133 31 -28
+63 -51 72 -51 39 0 34 181 -7 254 -14 25 -23 46 -20 46 3 0 33 -25 66 -57 43
+-39 91 -70 162 -103 55 -26 122 -64 149 -84 60 -47 69 -38 62 56 -9 124 -76
+222 -190 279 -59 29 -60 30 -21 24 71 -11 141 -52 181 -106 20 -28 54 -59 78
+-71 22 -11 58 -34 79 -51 32 -24 41 -27 48 -16 11 18 11 30 -1 106 -15 89 -42
+146 -100 207 -73 77 -123 95 -300 112 -80 8 -167 21 -195 30 -58 18 -130 62
+-167 101 -53 57 -133 193 -238 408 -141 287 -161 337 -167 415 l-5 65 75 145
+c78 152 117 248 148 365 l19 70 -5 -71 c-6 -91 -44 -236 -89 -344 -20 -46 -34
+-85 -33 -87 6 -5 119 57 192 105 89 58 272 242 349 351 212 297 308 590 376
+1136 42 347 76 532 100 559 5 4 24 -16 43 -45 78 -123 172 -183 423 -269 162
+-56 260 -109 382 -205 179 -142 359 -248 490 -290 81 -27 221 -18 295 18 144
+71 256 266 257 447 0 106 -30 174 -144 322 -70 91 -86 153 -96 363 -9 192 -25
+260 -87 374 -96 173 -549 772 -619 818 -43 28 -59 9 -60 -71 0 -36 -3 -68 -5
+-70 -2 -2 -40 41 -84 97 -95 121 -216 247 -237 247 -8 0 -23 -9 -32 -19 -15
+-17 -17 -34 -15 -105 2 -48 3 -86 2 -86 -2 0 -51 39 -110 86 -225 179 -355
+252 -378 213 -4 -6 5 -57 20 -115 23 -83 26 -106 16 -118 -11 -13 -20 -12 -70
+13 -66 34 -269 114 -356 142 -67 21 -120 24 -130 8 -10 -15 13 -65 69 -149 36
+-55 50 -86 54 -120 7 -73 2 -74 -234 -80 -175 -4 -206 -7 -221 -22 -15 -16
+-15 -20 -2 -44 8 -15 42 -50 76 -77 101 -81 95 -116 -30 -178 -125 -63 -257
+-162 -257 -193 0 -7 33 -28 73 -47 39 -19 73 -41 75 -49 1 -8 -38 -82 -88
+-165 -49 -82 -90 -159 -90 -171 0 -21 53 -54 86 -54 11 0 14 -5 9 -17 -4 -10
+-24 -71 -46 -135 -44 -135 -58 -165 -101 -213 -39 -45 -96 -75 -156 -81 -59
+-7 -187 32 -255 77 -226 149 -272 565 -102 922 52 111 121 210 234 337 124
+139 135 158 126 217 -24 164 -265 615 -487 911 -312 418 -757 791 -1213 1017
+-224 111 -400 175 -606 220 -102 22 -340 32 -356 14z m5022 -3314 c47 -8 103
+-35 128 -62 27 -31 42 -119 28 -170 -10 -36 -16 -43 -37 -43 -36 0 -97 34
+-129 72 -31 37 -79 135 -90 186 -8 37 -18 35 100 17z m571 -721 c16 -38 18
+-54 6 -54 -5 0 -14 17 -21 38 -7 20 -15 43 -18 51 -4 9 -1 11 7 6 6 -4 18 -22
+26 -41z" />
+        <path d="M6669 3287 c-46 -35 -127 -90 -179 -122 -126 -79 -170 -113 -181
+-143 -13 -33 17 -132 75 -257 38 -80 56 -103 162 -210 127 -129 220 -239 292
+-347 58 -88 91 -104 235 -113 123 -7 175 -23 230 -66 63 -51 99 -61 187 -53
+95 8 157 -10 218 -62 39 -33 41 -34 51 -15 17 31 13 116 -9 174 -34 91 -107
+159 -200 188 -22 6 -21 7 11 8 86 2 151 -41 206 -136 38 -66 40 -67 93 -78 60
+-12 83 -23 149 -68 l44 -30 -5 79 c-8 142 -96 273 -220 329 -58 26 -76 29
+-228 36 -91 4 -184 12 -207 18 -62 17 -161 88 -213 153 -46 57 -262 448 -365
+657 -30 63 -57 116 -59 118 -1 2 -41 -25 -87 -60z" />
+      </g>
+    </svg>
+  </div>
 
-<script>
+
+  </div>
+
+  <!-- Footer with legal disclaimer -->
+  <footer id="footer">
+    <p style="margin: 0;">
+      This is a non-commercial fan project inspired by the world of <em>Eragon</em> by Christopher Paolini.
+    </p>
+    <p style="margin: 0; text-indent: -2.6em; padding-left: 2.3em; margin-bottom: 10px;">
+      All rights to the Inheritance Cycle universe belong to him and his publishers.<br>
+      This project is not affiliated with Christopher Paolini or any official license holder.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </p>
+  </footer>
+
+  <script>
+  // Total number of fireflies that will be created
   const NUM_FIREFLIES = 50;
 
+  // Loop to create and animate glowing fireflies on the screen
   for (let i = 0; i < NUM_FIREFLIES; i++) {
-    let firefly = document.createElement('div');
-    firefly.classList.add('firefly');
+    let firefly = document.createElement('div'); // Create a new div element
+    firefly.classList.add('firefly');             // Add firefly class for styling
+
+    // Random position on the screen
     firefly.style.top = Math.random() * 100 + 'vh';
     firefly.style.left = Math.random() * 100 + 'vw';
+
+    // Random movement directions
     let moveX = (Math.random() - 0.5) * 200;
     let moveY = (Math.random() - 0.5) * 200;
-    let duration = 10 + Math.random() * 10;
+    let duration = 10 + Math.random() * 10; // Animation duration
 
+    // Animate the firefly in an oscillating motion
     firefly.animate([
       { transform: `translate(0, 0)` },
       { transform: `translate(${moveX}px, ${moveY}px)` }
@@ -200,44 +315,64 @@
       easing: 'ease-in-out'
     });
 
+    // Add the firefly to the page
     document.body.appendChild(firefly);
   }
 
+  // Generate a random hexadecimal color string
   function getRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
   }
 
+  // Randomly return 'male' or 'female' dragon gender
   function getDragonGender() {
     return Math.random() < 0.5 ? 'male' : 'female';
   }
 
+  // Return a random egg size between 30 and 150 (cm)
   function getEggSize() {
-    return parseFloat((Math.random() * (150.01 - 30) + 30).toFixed(2));
+  return Math.floor(Math.random() * (150 - 30 + 1)) + 30;
   }
 
+  // Main function that triggers when the button is clicked
   function forgeDestiny() {
-    const nameInput = document.getElementById('name').value.trim();
+    const nameInput = document.getElementById('name').value.trim(); // Get user input
+
     if (!nameInput) {
       alert("Please enter your name!");
       return;
     }
 
-    const name = nameInput; 
-    const multicolor = Math.random() < 0.2;
+    const name = nameInput; // Store name
+    const multicolor = Math.random() < 0.2; // 20% chance of multicolor egg/dragon
+
     const color1 = getRandomColor();
     const color2 = multicolor ? getRandomColor() : null;
+
+    // Text to describe egg color
     const formattedColor = multicolor
       ? `a swirl of ${color1} and ${color2}`
       : color1;
-    const gender = getDragonGender();
-    const size = getEggSize();
 
-    const egg = document.getElementById("eggVisual");
-    egg.style.display = "block";
-    egg.style.background = multicolor
-      ? `linear-gradient(135deg, ${color1}, ${color2})`
-      : color1;
+    const gender = getDragonGender(); // Random gender
+    const size = getEggSize();       // Random egg size
 
+    // Show the egg graphic
+    const eggVisual = document.getElementById("eggVisual");
+    eggVisual.style.display = "block";
+
+    // Apply glowing visual effect to egg
+    let glowFilter = multicolor
+      ? `drop-shadow(0 0 5px ${color1}) drop-shadow(0 0 5px ${color2})`
+      : `drop-shadow(0 0 5px ${color1})`;
+
+    eggVisual.style.filter = glowFilter;
+
+    // Update gradient color for egg SVG
+    document.getElementById("stop1").setAttribute("stop-color", color1);
+    document.getElementById("stop2").setAttribute("stop-color", multicolor ? color2 : color1);
+
+    // Narrative story that includes user input and random values
     const story = `
 <p>The sun dipped behind the peaks of the mountains, painting the sky in gold and purple. The elven treetops whispered in the soft wind, their leaves filtering the last rays of light. You stood there among the chosen — a line of warriors from once-divided races, now united by the same oath. Humans with determined expressions, elves with noble posture, dwarves forged in the deepest forges of Tronjheim, and even urgals, whose presence, once unthinkable, was now accepted. All had trained, fought, and waited for this moment.<br>
 The ceremony had begun.<br>
@@ -254,21 +389,32 @@ And so, beneath the moon and stars, while elven songs echoed above, the fate of 
 </p>
 `;
 
+    // Insert story into the result container
     document.getElementById("result").innerHTML = story;
+
+    // Show the dragon SVG
+    const dragonVisual = document.getElementById("dragonVisual");
+    dragonVisual.style.display = "block";
+
+    // Apply glowing visual effect to dragon
+    let dragonGlow = multicolor
+      ? `drop-shadow(0 0 0px ${color1}) drop-shadow(0 0 0px ${color2})`
+      : `drop-shadow(0 0 0px ${color1})`;
+
+    dragonVisual.style.filter = dragonGlow;
+
+    // Update dragon gradient colors
+    document.getElementById("dragonStop1").setAttribute("stop-color", color1);
+    document.getElementById("dragonStop2").setAttribute("stop-color", multicolor ? color2 : color1);
   }
-  
+
+  // When the user scrolls to the bottom, show the footer
   window.addEventListener('scroll', function () {
     const footer = document.getElementById('footer');
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = window.scrollY;
-
-    if (scrolled >= scrollable - 5) {
-      footer.style.opacity = '1';
-    } else {
-      footer.style.opacity = '0';
-    }
+    footer.style.opacity = scrolled >= scrollable - 5 ? '1' : '0';
   });
 </script>
-
 </body>
 </html>
